@@ -1,0 +1,199 @@
+<html>
+<head>
+<title>Tutorial for Bean Builder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1 align="center"> Tutorial for Bean Builder</h1>
+<h4 align="center">by Mark Davidson</h4>
+<hr>
+<p>This tutorial will demonstrate the main features of building an application 
+  with Bean Builder. It will cover, component instantiation, property editing, 
+  property association and event adapter creation for wiring events. You will 
+  also save the design and run it outside Bean Builder.</p>
+<p>Please skim over the <a href="userguide.html">User's Guide</a> so that you 
+  will be familiar with the various areas of the Bean Builder user interface.</p>
+<h3>The Application</h3>
+<p>The simple application that will be built is an entry list. Pressing return 
+  on a text field will appends it's contents as a list item. A button will be 
+  enabled to remove all the items from the list. </p>
+<p>The application will be developed by laying out the components, wiring them 
+  together and saving the design to disk. </p>
+<h3>1. Create the Design</h3>
+<p>Objects are retrieved from the Object Palette below the toolbar. As you move 
+  your cursor over the individual items, notice that a brief description of that 
+  object is presented in the status bar.</p>
+<p>If you hold you're cursor over the object icon, a tooltip will appear with 
+  the type of object. You can change the icons in the palette using the <i>Icons</i> 
+  menu. The icons, tooltip text, and status string has been retrieved from the 
+  <i>BeanInfo</i> class associated with the object class. </p>
+<p><i>Note: The BeanInfo information is incomplete for JDK 1.3 beta.</i></p>
+<p></p>
+<p><b>Select the <i>JList</i> item from the Swing tab on the objects palette. 
+  </b></p>
+<p>Notice that the cursor changes from a pointer to a cross hair. This indicates 
+  that the tool is in &quot;instantiation mode&quot;. </p>
+<p><b>Click and drag a small rectangle onto the design panel. </b></p>
+<p>An empty <i>JList</i> should appear and the cursor will return to a pointer.</p>
+<p>Repeat the process for a <i>JTextField,</i> <i>JLabel</i> and a <i>JButton</i> 
+  so that the interface looks the same as the following figure:</p>
+<p align="center"><img src="ui_design.jpg" width="197" height="226" border="2" alt="UI Design"></p>
+<p>Clicking on an object will make it the <i>current object</i>. The properties 
+  of the current object will be displayed in the properties panel. If this is 
+  a visual object, then it will be selected in the <a href="userguide.html">Containment 
+  Hierarchy</a>. The current object will have blue resizing handles around it. 
+  These handles can be used to resize and move the object.</p>
+<h3>2. Setting Object Properties</h3>
+<p>The Property Panel contains a list of introspected properties of the current 
+  object. Each row represents a <a href="http://java.sun.com/products/jdk/1.3/docs/api/java/beans/PropertyDescriptor.html">PropertyDescriptor</a> 
+  and the array of descriptors in encapsulated in the <i>beanbox.property.PropertyTableModel</i>. 
+</p>
+<p>The <b>Property</b> column shows the display name of the <i>PropertyDescriptor</i> 
+  in alphabetical order. If you hold the mouse over an item in this column, a 
+  tooltip appears with the short description of the property from the <i>PropertyDescriptor</i>.</p>
+<p>The <b>Value</b> column displays the current value for that property in a <a href="http://java.sun.com/products/jdk/1.3/docs/api/java/beans/PropertyEditor.html" target="_blank">PropertyEditor</a> 
+  that was specified for that type.</p>
+<p><b>Select the JButton object as the current object and change the <i>label</i> 
+  property to &quot;Remove All&quot;.</b> </p>
+<p>When you press the Enter key, the text of the button should be changed to the 
+  new property value.</p>
+<p><b>Change the name of the JLabel object to &quot;Add: &quot; by changing it's 
+  <i>text</i> property</b> </p>
+<p><b>Increase the value of the JLabel object's<i> font</i> property to 18 point 
+  using the font PropertyEditor.</b> </p>
+<p><b>Finally, set the <i>horizontalAlignment</i> of the label to be right justified 
+  by selecting &quot;RIGHT&quot; using the alignment combo box.</b></p>
+<p>Your user interface should look like the following:</p>
+<p align="center"><img src="ui_properties.jpg" width="189" height="221" border="2"></p>
+<h3 align="left">3. Creating a Non-Visual Bean</h3>
+<p align="left">The model view controller (MVC) architecture of the JFC components 
+  requires a model which acts as an intermediary between the user interaction 
+  and the data. In order to have list display data a model should be associated 
+  with it. For this example, we are going to set the model of the JList object 
+  to use a <a href="http://java.sun.com/products/jdk/1.3/docs/api/javax/swing/DefaultListModel.html" target="_blank">DefaultListModel</a>. 
+  First we have to create a new instance of the list model and place it on the 
+  design panel for manipulation.</p>
+<p align="left"><b>Put the cursor focus in the <i>Instantiate Bean</i> text field 
+  (try alt-b) and enter the following string: <i>javax.swing.DefaultListModel</i></b></p>
+<p align="left">A rectangle in the upper left of the design panel should appear 
+  and it will be the selected object. Notice that the Containment Hierarchy doesn't 
+  show the same selection. This is because the hierarchy only displays visual 
+  beans and the list model is non-visual (i.e., not subclassed from java.awt.Component).</p>
+<h3 align="left">4. Setting an Object as a Property of Another Object</h3>
+<p align="left">The newly instantiated DefaultListModel is in the design but is 
+  not associated with an object. This model should be associated with the JList 
+  object in the user interface. Use the <i>Interaction Wizard</i> to define the 
+  way that objects relate to eachother. The interaction will be to take a source 
+  object and set it as a property value on the target object using a setter method 
+  from the target. This means that we want to call the JList.setModel(...) method 
+  with the list model as the argument.</p>
+<p align="left"><b>Click on the instance of the DefaultListModel and drag the 
+  mouse over to the JList object.</b></p>
+<p align="left">Notice that a line is drawn between the list model and the JList 
+  object. The JList is highlighted as a suitable target. When the mouse is released, 
+  the Interaction Wizard appears:</p>
+<p align="center"><img src="wizard_prop.jpg" width="558" height="320"></p>
+<p align="left">The items in the list will be target object methods whose parameter 
+  matches the type of the source object or can be related by an <i>isAssignableFrom</i> 
+  inheritance relationship.</p>
+<p align="left"><b>Select the &quot;model( ListModel )&quot; list item and select 
+  the <i>Finish</i> button.</b></p>
+<p align="left">The Interaction Wizard will be dismissed and the DefaultListModel 
+  instance will be used as the model for the JList object. You can verify this 
+  by selecting the JList object and looking at the model property in the Property 
+  Panel.</p>
+<h3 align="left"><b>5. Creating Event Adapters</b></h3>
+<p align="left">The traditional way of creating an event interaction between two 
+  objects was to create a small inner class and recompile it.</p>
+<p align="left">This builder uses the new &quot;java.lang.reflect.Proxy&quot; 
+  API to create &quot;trampoline&quot; objects as event listeners. This API was 
+  added to JDK 1.3 and are used to synthesize listeners of arbitrary types at 
+  runtime. The advantage of using this methodology is that it avoids costly inner 
+  classes and you can dynamically create these listener classes without having 
+  to recompile code.</p>
+<p align="left"><b>Click on the JTextField object and drag the cursor to the DefaultListModel 
+  object.</b></p>
+<p align="left">The Interaction Wizard will appear. The default mode will be to 
+  create a property association. Select the <i>Event Adapter</i> radio button 
+  and the Wizard will reconfigure itself for generating an event adapter. Notice 
+  that the <i>Finish</i> button is disabled and the <i>Next</i> button is enabled. 
+  This indicates that there are more steps to create the adapter.</p>
+<p align="center"><img src="wizard_evt1.jpg" width="614" height="394"></p>
+<p align="left"><b>Select the &quot;action&quot; item in the &quot;Event Sets&quot; 
+  list and select the <i>Next</i> button</b></p>
+<p align="left">You will be presented with the next page of the wizard that will 
+  allow the selection of a target method on the DefaultListModel instance. As 
+  a simplification, only target methods that require one or zero arguments are 
+  listed. </p>
+<p align="center"><img src="wizard_evt2.jpg" width="614" height="394"></p>
+<p align="left"><b>Select the &quot;addElement( Object )&quot; item in the &quot;Target 
+  Methods&quot; list and select the <i>Next</i> button</b></p>
+<p align="left">If the target method has arguments, then the next page will allow 
+  for the setting of the arguments.</p>
+<p align="center"><img src="wizard_evt3.jpg" width="614" height="394"></p>
+<p align="left">The top portion of the panel will be a list of type value pairs 
+  for the defining the arguments statically. The value column will load the PropertyEditor 
+  associated with the type from the <a href="http://java.sun.com/products/jdk/1.3/docs/api/java/beans/PropertyEditorManager.html" target="_blank">PropertyEditorManager</a>. 
+</p>
+<p align="left">The lower portion of the panel is a list of no argument methods 
+  retrieved from the source object that return the same type that the target method 
+  requires as an argument. This will allow for adapters that get generated which 
+  use <code>target.setFoo(source.getBar);</code></p>
+<p align="left"><b>Select the &quot;getText( )&quot; item in the &quot;Source 
+  Methods&quot; list and select the <i>Finish</i> button.</b></p>
+<p align="left">A new interaction handler will be created that will add the string 
+  in the JTextField to the list when the Enter key is pressed.</p>
+<p align="left"><b>Create a new event adapter for the JButton using the Interaction 
+  Wizard. </b></p>
+<p align="left">The interaction will delete all the items in the list when the 
+  &quot;Remove All&quot; button is pressed. Repeat the same steps through the 
+  wizard. Using the following values:</p>
+<ul>
+  <li><b>Source Object:</b> JButton</li>
+  <li><b>Target Object:</b> DefaultListModel</li>
+  <li><b>Source Method:</b> actionPerformed( ActionEvent )</li>
+  <li><b>Target Method:</b> removeAllElements( )</li>
+</ul>
+<h3 align="left">6. Testing the Design</h3>
+<p align="left">The adapters and property association are set and created for 
+  &quot;live&quot; objects. Test the design by taking the tool out the &quot;Design 
+  Mode&quot; and putting it into &quot;Runtime Mode&quot;. You can switch between 
+  these two states by selecting or deselecting the &quot;Design Mode&quot; checkbox 
+  (alt-d). This Action is mirrored on the View menu.</p>
+<p align="left">In Runtime mode, the objects on the design panel become &quot;live&quot;. 
+  The application behaves the way that it was designed.</p>
+<p align="left">Type some values in the text field an press the Enter key at end 
+  of each string. These values should appear in the list. Pressing the &quot;Remove 
+  All&quot; button will clear the list.</p>
+<h3 align="left">7. Saving the Design</h3>
+<p align="left">Bean Builder uses a new method of persistence that can write the object 
+  graph and properties out to disk in a plain (and editable) text format. There 
+  are two new formats available: BeanScript - a terse format that is similar in 
+  syntax to an expression evaluator language and XML format.</p>
+<p align="left">Press the <i>Save</i> button to save the design to disk. If this 
+  is the first time that the design is saved, then you will be prompted with a 
+  FileChooserDialog to select the format and the name of the persistence file.</p>
+<p align="left"><i>Note: The data currently in the models and text fields will 
+  also be saved to disk. If you wish to save the application in a blank state 
+  then delete all the values.</i></p>
+<p align="left">If you saved the design in an XML format then you should have 
+  a file that looks like this: <a href="test.xml">test.xml</a></p>
+<p align="left">Use the <i>Open</i> button to reload the design or open an alternative 
+  design.</p>
+<p align="left">Use the <i>New</i> button to create a new design.</p>
+<p align="left">All these buttons are mirrored in the <i>File</i> menu.</p>
+<h3 align="left">8. Reading the Design in a Different Application</h3>
+<p align="left">Part of the goals of Bean Builder is to introduce a new portable persistence 
+  format. Included is a modest 50 line program called TestShell that reads a design 
+  persistence file and recreate it. </p>
+<p align="left">From the root of the directory, enter the string on a command 
+  line from the root of the distribution:</p>
+<blockquote>
+  <p><code>% java -cp beanbox.jar TestShell test.xml</code></p>
+</blockquote>
+<p align="left">The panel that was was created with the builder should be in a 
+  frame.</p>
+<p align="left"></p>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>README - Swing Bean Builder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1 align="center">README</h1>
+<h2 align="center">Swing Bean Builder</h2>
+<h3 align="center">A Simple Builder to Demonstrate new UI Technologies</h3>
+<hr>
+<h2>Contents</h2>
+<ul>
+  <li> <a href="#intro">Introduction</a></li>
+  <li><a href="#sys">System Requirements</a></li>
+  <li><a href="#install">Installation</a></li>
+  <li><a href="#run">Running Bean Builder</a></li>
+  <li><a href="#notes">Application Notes</a></li>
+  <li><a href="#docs">Other Documentation</a></li>
+  <li><a href="#feedback">Feedback and Comments</a></li>
+</ul>
+<h2><a name="intro"></a>Introduction</h2>
+<p>Bean Builder is a simple builder that demonstrates the new persistance 
+  mechanism. The new persistance scheme is a text based mechanism that allows 
+  for the long term storage and reconstruction of Java Bean object graphs. </p>
+<p>Bean Builder is also a demonstration of the following technologies: </p>
+<ul>
+  <li>Design time meta information specified in javadoc format and generated as 
+    name-value pairs in BeanInfo classes. </li>
+  <li>Dynamic adapter generation to hook up events using the new JDK 1.3 Proxy 
+    API's. See <a href="http://java.sun.com/products/jdk/1.3/docs/guide/reflection/proxy.html" target="_blank">Dynamic 
+    Proxy Classes</a> for details. </li>
+  <li>New JFC/Swing based Property Editors for editing: Fonts, Colors, Objects, 
+    Dimension, Insets, Rectangles, etc,... </li>
+  <li>Actions architecture based on javax.swing.Action interface. See <a href="http://java.sun.com/products/jdk/1.3/docs/guide/swing/ActionsChanges.html" target="_blank">Adding 
+    Actions to ActionEvent Sources</a> for details. </li>
+  <li>A simple Jar classloader based on <a href="http://java.sun.com/products/jdk/1.3/docs/api/java/net/URLClassLoader.html" target="_blank">java.net.URLClassLoader</a> 
+    that was introduced in JDK 1.2 </li>
+  <li>Correct use of JFC/Swing TableModels and TreeModels. </li>
+  <li>Sorting and filtering using the Java collections classes introduced in JDK 
+    1.2</li>
+</ul>
+<p>Watch <a href="http://java.sun.com/products/jfc/tsc" target="_blank">The Swing 
+  Connection</a> for upcoming articles about how Bean Builder implements these technologies. 
+</p>
+<h2><a name="sys"></a>System Requirements</h2>
+<p>The Bean Builder requires JDK 1.3 beta or later to be installed in order to run. </p>
+<p>You can get an early access of the JDK 1.3 from the <a href="http://developer.java.sun.com/developer/" target="_blank">Java 
+  Developer Connection</a>. </p>
+<blockquote>
+  <p> <a href="http://developer.java.sun.com/developer/earlyAccess/j2sdk13/" target="_blank">http://developer.java.sun.com/developer/earlyAccess/j2sdk13/</a> 
+  </p>
+</blockquote>
+<p>You will need to register if you are not already a member of the JDC. Registration 
+  is free. </p>
+<h2><a name="install"></a>Installation</h2>
+<p>To install Bean Builder, </p>
+<ol>
+  <li>Create a new directory for the installation. This will be refered to as 
+    the &quot;root distribution directory&quot;.</li>
+  <li>Unzip the beanbox.zip file in the root distribution directory preserving 
+    the directory structure.</li>
+</ol>
+<p>The guide directory contains the User Guide and the Tutorial for the Bean Builder.</p>
+<h2><a name="run"></a>Running Bean Builder </h2>
+<p>Make sure that you have access to a local distribution of JDK 1.3 beta or later. 
+  You <i>must</i> use a JDK 1.3 beta or later since the archiver and event adapter 
+  generation requires API that was introduced in 1.3 </p>
+<ol>
+  <li>Download the distribution file <i>beanbox.zip.</i></li>
+  <li>Unpack the archive preserving directories.</li>
+  <li>Run the <b>&quot;runnit [ jdk1.3 root path] &quot;</b> script file. </li>
+</ol>
+<p>The <b>runnit</b> script takes a single argument which is the root to the JDK 
+  1.3 distribution. If the root is not specified then default values are used. 
+</p>
+<p>For Solaris, the shell script is called <b>runnit</b> and the default root 
+  used is <b>/usr/local/java/jdk1.3/solaris.</b> </p>
+<p>For the PC, the batch file is called <b>runnit.bat</b> and the default root 
+  is assumed to be <b>c:\jdk1.3</b>.</p>
+<h2><a name="notes"></a>Application Notes</h2>
+<p>An instance of JPanel is the root of the object hierarchy. This JPanel is using 
+  absolute positioning as it's layout manager. </p>
+<p>The builder was not designed for building a menu tree. All behavior associated 
+  with components on the &quot;Menu&quot; tab is unsupported. A newer release 
+  may address this.</p>
+<p>Creating instances of components from the &quot;Containers&quot; tab is undefined 
+  with the exception of JScrollPane. </p>
+<p>You can drop a <a href="http://java.sun.com/products/jdk/1.3/docs/api/javax/swing/Scrollable.html" target="_blank">Scrollable</a> 
+  component such as JList, JTable and JTree in a JScrollPane and the component 
+  will be added correctly to the JScrollPane container delegate. However, The 
+  Scrollable component will be inaccessible for creating interactions with other 
+  components in the design panel.</p>
+<p>The selected bounds of a Scrollable components in a JScrollPane will display 
+  the resizing handles relative to the parent JScrollPane rather than the Design 
+  Panel. This is a known bug.</p>
+<p>Editing a text field PropertyEditor could cause an exception if the value is 
+  not commited. Pressing the enter key after entering a new value will set that 
+  property on the bean. If the value has not been commited then an exception may 
+  occur when the property panel is loaded with properties from another object. 
+  This is a known bug.</p>
+<p>The Swing BeanInfo classes in dt.jar for JDK 1.3 Beta does not have a complete 
+  set of information. Specifically, the short descriptions for the components 
+  are not complete and some icons may be missing. This omissions don't affect 
+  the functionality of the builder and will be fixed with JDK 1.3. </p>
+<p>There is no separation between a design representation and the actual application 
+  being designed. The archive created will reflect the actual state of the application 
+  at the time it was archived. This means that if the app is tested and runtime 
+  properties are changed an archive snapshot will represent the current state.</p>
+<h4></h4>
+<h2><a name="docs"></a>Documentation</h2>
+<blockquote> 
+  <p><a href="guide/tutorial.html">Tutorial for Bean Builder</a> - Step by step 
+    instructions to become versed in the features of Bean Builder</p>
+  <p><a href="guide/userguide.html">Bean Builder User Guide</a> - Describes the 
+    UI</p>
+</blockquote>
+<h2><a name="feedback"></a>Feedback and Comments</h2>
+<p>Please direct all comments and questions to <a href="mailto:java-beans@java.sun.com">java-beans@java.sun.com</a></p>
+<hr>
+<small>The Bean Builder, is a product of Sun MicrosystemsTM, Inc.
+<p> Copyright © 1997-1999, Sun Microsystems, Inc. <br>
+<p>901 San Antonio Road, Palo Alto, California 94303-4900 USA. <br>
+<p>All rights reserved. </small>
+</body>
+</html>

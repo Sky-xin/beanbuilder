@@ -1,0 +1,181 @@
+<JAVA-OBJECT-ARCHIVE VERSION="0.1"> 
+  <CLASS ID="JPanel" NAME="javax.swing.JPanel"/> 
+  <CLASS ID="Dimension" NAME="java.awt.Dimension"/> 
+  <CLASS ID="Integer" NAME="java.lang.Integer"/> 
+  <CLASS ID="JList" NAME="javax.swing.JList"/> 
+  <CLASS ID="Rectangle" NAME="java.awt.Rectangle"/> 
+  <CLASS ID="Array" NAME="java.lang.reflect.Array"/> 
+  <CLASS ID="DefaultListModel" NAME="javax.swing.DefaultListModel"/> 
+  <CLASS ID="FontUIResource" NAME="javax.swing.plaf.FontUIResource"/> 
+  <CLASS ID="EmptyBorder" NAME="javax.swing.border.EmptyBorder"/> 
+  <CLASS ID="JLabel" NAME="javax.swing.JLabel"/> 
+  <CLASS ID="Font" NAME="java.awt.Font"/> 
+  <CLASS ID="JTextField" NAME="javax.swing.JTextField"/> 
+  <CLASS ID="Proxy" NAME="java.lang.reflect.Proxy"/> 
+  <CLASS ID="ActionListener" NAME="java.awt.event.ActionListener"/> 
+  <CLASS ID="InteractionHandler" NAME="beantest.InteractionHandler"/> 
+  <CLASS ID="Object" NAME="java.lang.Object"/> 
+  <CLASS ID="JTextComponent" NAME="javax.swing.text.JTextComponent"/> 
+  <CLASS ID="ActionEvent" NAME="java.awt.event.ActionEvent"/> 
+  <CLASS ID="JButton" NAME="javax.swing.JButton"/> 
+  <OBJECT ID="JPanel0" CLASS="JPanel"> 
+    <OBJECT PROPERTY="preferredSize" CLASS="Dimension"> 
+      <OBJECT CLASS="Integer" VALUE="200"/> 
+      <OBJECT CLASS="Integer" VALUE="200"/> 
+    </OBJECT> 
+    <OBJECT METHOD="add"> 
+      <OBJECT ID="JList0" CLASS="JList"> 
+        <OBJECT ID="ColorUIResource0" PROPERTYREF="background"/> 
+        <OBJECT ID="ColorUIResource1" PROPERTYREF="foreground"/> 
+        <OBJECT PROPERTY="bounds" CLASS="Rectangle"> 
+          <OBJECT CLASS="Integer" VALUE="152"/> 
+          <OBJECT CLASS="Integer" VALUE="141"/> 
+          <OBJECT CLASS="Integer" VALUE="175"/> 
+          <OBJECT CLASS="Integer" VALUE="127"/> 
+        </OBJECT> 
+        <OBJECT PROPERTY="selectedIndices" CLASS="Array"> 
+          <OBJECT CLASS="Integer" PROPERTYREF="TYPE"/> 
+          <OBJECT CLASS="Integer" VALUE="0"/> 
+        </OBJECT> 
+        <OBJECT PROPERTY="model" ID="DefaultListModel0" CLASS="DefaultListModel"/> 
+        <OBJECT ID="DefaultListCellRenderer$UIResource0" PROPERTYREF="cellRenderer"> 
+          <OBJECT PROPERTY="background" IDREF="ColorUIResource0"/> 
+          <OBJECT PROPERTY="foreground" IDREF="ColorUIResource1"/> 
+          <OBJECT PROPERTY="font" CLASS="FontUIResource"> 
+            <OBJECT VALUE="Dialog"/> 
+            <OBJECT CLASS="Integer" VALUE="0"/> 
+            <OBJECT CLASS="Integer" VALUE="12"/> 
+          </OBJECT> 
+          <OBJECT PROPERTY="border" CLASS="EmptyBorder"> 
+            <OBJECT CLASS="Integer" VALUE="1"/> 
+            <OBJECT CLASS="Integer" VALUE="1"/> 
+            <OBJECT CLASS="Integer" VALUE="1"/> 
+            <OBJECT CLASS="Integer" VALUE="1"/> 
+          </OBJECT> 
+          <OBJECT PROPERTY="bounds" CLASS="Rectangle"> 
+            <OBJECT CLASS="Integer" VALUE="-175"/> 
+            <OBJECT CLASS="Integer" VALUE="-19"/> 
+            <OBJECT CLASS="Integer" VALUE="0"/> 
+            <OBJECT CLASS="Integer" VALUE="0"/> 
+          </OBJECT> 
+          <OBJECT PROPERTY="text" VALUE="Bar"/> 
+        </OBJECT> 
+      </OBJECT> 
+    </OBJECT> 
+    <OBJECT METHOD="add"> 
+      <OBJECT ID="JLabel0" CLASS="JLabel"> 
+        <OBJECT PROPERTY="font" CLASS="Font"> 
+          <OBJECT VALUE="Dialog"/> 
+          <OBJECT CLASS="Integer" VALUE="1"/> 
+          <OBJECT CLASS="Integer" VALUE="18"/> 
+        </OBJECT> 
+        <OBJECT PROPERTY="bounds" CLASS="Rectangle"> 
+          <OBJECT CLASS="Integer" VALUE="149"/> 
+          <OBJECT CLASS="Integer" VALUE="107"/> 
+          <OBJECT CLASS="Integer" VALUE="84"/> 
+          <OBJECT CLASS="Integer" VALUE="27"/> 
+        </OBJECT> 
+        <OBJECT PROPERTY="text" VALUE="Add: "/> 
+        <OBJECT PROPERTY="horizontalAlignment" CLASS="Integer" VALUE="4"/> 
+      </OBJECT> 
+    </OBJECT> 
+    <OBJECT METHOD="add"> 
+      <OBJECT ID="JTextField0" CLASS="JTextField"> 
+        <OBJECT METHOD="addActionListener"> 
+          <OBJECT ARGUMENT="0" CLASS="Proxy" METHOD="newProxyInstance"> 
+            <OBJECT/> 
+            <OBJECT ID="ClassArray0" CLASS="Array"> 
+              <OBJECT IDREF="Class"/> 
+              <OBJECT CLASS="Integer" VALUE="1"/> 
+              <OBJECT PROPERTY="0" IDREF="ActionListener"/> 
+            </OBJECT> 
+            <OBJECT ID="InteractionHandler0" CLASS="InteractionHandler"> 
+              <OBJECT PROPERTY="targetArgs" ID="ObjectArray0" CLASS="Array"> 
+                <OBJECT IDREF="Object"/> 
+                <OBJECT CLASS="Integer" VALUE="1"/> 
+                <OBJECT PROPERTY="0" CLASS="JTextComponent" METHOD="getMethod"> 
+                  <OBJECT VALUE="getText"/> 
+                  <OBJECT CLASS="Array"> 
+                    <OBJECT IDREF="Class"/> 
+                    <OBJECT CLASS="Integer" VALUE="0"/> 
+                  </OBJECT> 
+                </OBJECT> 
+              </OBJECT> 
+              <OBJECT PROPERTY="sourceMethod" CLASS="ActionListener" METHOD="getMethod"> 
+                <OBJECT VALUE="actionPerformed"/> 
+                <OBJECT ID="ClassArray3" CLASS="Array"> 
+                  <OBJECT IDREF="Class"/> 
+                  <OBJECT CLASS="Integer" VALUE="1"/> 
+                  <OBJECT PROPERTY="0" IDREF="ActionEvent"/> 
+                </OBJECT> 
+              </OBJECT> 
+              <OBJECT PROPERTY="source" IDREF="JTextField0"/> 
+              <OBJECT PROPERTY="target" IDREF="DefaultListModel0"/> 
+              <OBJECT PROPERTY="targetMethod" CLASS="DefaultListModel" METHOD="getMethod"> 
+                <OBJECT VALUE="addElement"/> 
+                <OBJECT ID="ClassArray5" CLASS="Array"> 
+                  <OBJECT IDREF="Class"/> 
+                  <OBJECT CLASS="Integer" VALUE="1"/> 
+                  <OBJECT PROPERTY="0" IDREF="Object"/> 
+                </OBJECT> 
+              </OBJECT> 
+            </OBJECT> 
+          </OBJECT> 
+        </OBJECT> 
+        <OBJECT PROPERTY="bounds" CLASS="Rectangle"> 
+          <OBJECT CLASS="Integer" VALUE="248"/> 
+          <OBJECT CLASS="Integer" VALUE="109"/> 
+          <OBJECT CLASS="Integer" VALUE="73"/> 
+          <OBJECT CLASS="Integer" VALUE="22"/> 
+        </OBJECT> 
+      </OBJECT> 
+    </OBJECT> 
+    <OBJECT METHOD="add"> 
+      <OBJECT ID="JButton0" CLASS="JButton"> 
+        <OBJECT METHOD="addActionListener"> 
+          <OBJECT ARGUMENT="0" CLASS="Proxy" METHOD="newProxyInstance"> 
+            <OBJECT/> 
+            <OBJECT ID="ClassArray7" CLASS="Array"> 
+              <OBJECT IDREF="Class"/> 
+              <OBJECT CLASS="Integer" VALUE="1"/> 
+              <OBJECT PROPERTY="0" IDREF="ActionListener"/> 
+            </OBJECT> 
+            <OBJECT ID="InteractionHandler1" CLASS="InteractionHandler"> 
+              <OBJECT PROPERTY="sourceMethod" CLASS="ActionListener" METHOD="getMethod"> 
+                <OBJECT VALUE="actionPerformed"/> 
+                <OBJECT ID="ClassArray9" CLASS="Array"> 
+                  <OBJECT IDREF="Class"/> 
+                  <OBJECT CLASS="Integer" VALUE="1"/> 
+                  <OBJECT PROPERTY="0" IDREF="ActionEvent"/> 
+                </OBJECT> 
+              </OBJECT> 
+              <OBJECT PROPERTY="source" IDREF="JButton0"/> 
+              <OBJECT PROPERTY="target" IDREF="DefaultListModel0"/> 
+              <OBJECT PROPERTY="targetMethod" CLASS="DefaultListModel" METHOD="getMethod"> 
+                <OBJECT VALUE="removeAllElements"/> 
+                <OBJECT CLASS="Array"> 
+                  <OBJECT IDREF="Class"/> 
+                  <OBJECT CLASS="Integer" VALUE="0"/> 
+                </OBJECT> 
+              </OBJECT> 
+            </OBJECT> 
+          </OBJECT> 
+        </OBJECT> 
+        <OBJECT PROPERTY="bounds" CLASS="Rectangle"> 
+          <OBJECT CLASS="Integer" VALUE="151"/> 
+          <OBJECT CLASS="Integer" VALUE="287"/> 
+          <OBJECT CLASS="Integer" VALUE="178"/> 
+          <OBJECT CLASS="Integer" VALUE="27"/> 
+        </OBJECT> 
+        <OBJECT PROPERTY="text" VALUE="Remove All"/> 
+      </OBJECT> 
+    </OBJECT> 
+    <OBJECT PROPERTY="layout"/> 
+    <OBJECT PROPERTY="bounds" CLASS="Rectangle"> 
+      <OBJECT CLASS="Integer" VALUE="0"/> 
+      <OBJECT CLASS="Integer" VALUE="0"/> 
+      <OBJECT CLASS="Integer" VALUE="539"/> 
+      <OBJECT CLASS="Integer" VALUE="366"/> 
+    </OBJECT> 
+  </OBJECT> 
+</JAVA-OBJECT-ARCHIVE> 
