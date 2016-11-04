@@ -33,6 +33,8 @@ import javax.swing.ImageIcon;
 
 import java.util.Hashtable;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The ActionManager manages and coordinates the enabling and handling of actions 
@@ -78,6 +80,9 @@ public abstract class ActionManager implements ActionConstants,
     // This is the event queue.    
     private Vector queue = new Vector();
 
+    // add by yue.yan@2016/11/3
+    private Logger logger = Logger.getLogger("com.sun.java.swing.action.ActionManager");
+    
     /**
      * Creates the action manager
      */
@@ -135,6 +140,9 @@ public abstract class ActionManager implements ActionConstants,
      */
     public ImageIcon getIcon(String name)  {
         String imagePath = IMAGE_DIR + name;
+//        /Beanbuilder/images/add16.gif
+//    	String imagePath = System.getProperty("user.dir") + IMAGE_DIR + name;
+        logger.info(imagePath);
         java.net.URL url = this.getClass().getResource(imagePath);
         if (url != null)  {
             return new ImageIcon(url);
